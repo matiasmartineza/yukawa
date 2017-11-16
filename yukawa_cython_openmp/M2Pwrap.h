@@ -402,13 +402,23 @@ void M2P_c(REAL *p, int pSize, REAL *px, int pxSize, REAL *py, int pySize, REAL 
         CJ_start = offMlt[tarTwg];
         CJ_end = offMlt[tarTwg+1];
 
-	#pragma omp parallel for private(CI_start, CI_end, CJ_start, CJ_end, sum_p, sum_px, sum_py, sum_pz, dx, dy, dz, a_aux, ay_aux, az_aux) shared(offTarSize, offTar, offMlt, x, y, z, xc, yc, zc, Nm, mult, sizeTar, p, px, py, pz)
+	#pragma omp parallel for private(sum_p, sum_px, sum_py, sum_pz, dx, dy, dz, a_aux, ax_aux, ay_aux, az_aux) shared(CI_start, CI_end, CJ_start, CJ_end, offTarSize, offTar, offMlt, x, y, z, xc, yc, zc, Nm, sizeTar, p, px, py, pz, mult)
         for (int i=CI_start; i<CI_end; i++) /* toma los targets "i" contenidos en el Twig "tarTwg", con tamaño sizeTar[tarTwg] */
         {
             sum_p = 0.;
             sum_px = 0.;
             sum_py = 0.;
             sum_pz = 0.;
+
+
+	    for (int ii=0; ii<Nm; ii++)
+   	    {
+        	a_aux[ii] = 0.;
+        	ax_aux[ii] = 0.;
+        	ay_aux[ii] = 0.;
+        	az_aux[ii] = 0.;
+    	    }	
+
 
             for (int j=CJ_start; j<CJ_end; j++) /* toma los multipolos j asociados al Twig "tarTwig" */
             {
@@ -417,20 +427,23 @@ void M2P_c(REAL *p, int pSize, REAL *px, int pxSize, REAL *py, int pySize, REAL 
                 dz = z[i] - zc[j];
 
                 getCoeff(a_aux, Nm, ax_aux, Nm, ay_aux, Nm, az_aux, Nm, dx, dy, dz, P, kappa, Index, indSize);  /* calcula los coeficientes de la expansión de taylor para el multipolo */
-
+		
                 for (int jj=0; jj<Nm; jj++) /* suma cada uno de los multipolos "jj" al multipolo de la partícula */
                 {
+		    
                     sum_p += a_aux[jj]*mult[Nm*j+jj];
                     sum_px += ax_aux[jj]*mult[Nm*j+jj];
                     sum_py += ay_aux[jj]*mult[Nm*j+jj];
                     sum_pz += az_aux[jj]*mult[Nm*j+jj];
+                    
                 }
             }
 
 	    /*define los potenciales como la suma a partir de todos los multipolos asociados */
+	    
             p[i]  += sum_p;
+	    py[i] += sum_py;
             px[i] += sum_px;
-            py[i] += sum_py;
             pz[i] += sum_pz;
         }
     }
