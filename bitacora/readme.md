@@ -12,7 +12,11 @@ Se hizo correr el código para 1000000 de targets y sources, en una versión par
 
 ![alt text](https://github.com/matiasmartineza/yukawa/blob/master/bitacora/exp_1.png "Experimento 1")
 
+#### Experimento: 
+Se hizo correr el código para verificar la cantidad de tiempo tomado en el proceso de M2P según distintos número de threads. Los resultados se ven en la figura del Experimento 2.
+
+![alt text](https://github.com/matiasmartineza/yukawa/blob/master/bitacora/exp_2.pdf "Experimento 2")
+
 #### Siguientes pasos: 
-- Experimentar para un número fijo de partículas, cambiando el número de threads.
 - Experimentar para un número fijo de threads, cambiando el número de partículas.
 - Paralelizar P2P.
