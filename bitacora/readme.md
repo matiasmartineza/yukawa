@@ -1,7 +1,6 @@
 # Bitácora
 
 ## 16 / Noviembre / 2017
-------
 
 #### NOTA:
 - Paralelización de M2P en el árbol de yukawa.
