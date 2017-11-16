@@ -29,21 +29,49 @@ NCRIT = 300
 theta = 0.5
 BSZ = 256
 
-sample_size = 1000 # Sample for error calculation
+sample_size = 10000 # Sample for error calculation
 
 Nj  = 100000  # Number of sources
 N   = 100000  # Number of targets
 
+# Sources
+xj = zeros(Nj)  
+yj = zeros(Nj) 
+zj = zeros(Nj) 
+m = zeros(Nj) 
+# Targets
+xi = zeros(N)   
+yi = zeros(N) 
+zi = zeros(N) 
+
+sources_points = open('sources_points.txt', 'r')
+
+for i in range(Nj):
+	xj[i] = float(sources_points.readline())
+for i in range(Nj):
+	yj[i] = float(sources_points.readline())
+for i in range(Nj):
+	zj[i] = float(sources_points.readline())
+for i in range(Nj):
+	m[i] = float(sources_points.readline())
+for i in range(N):
+	xi[i] = float(sources_points.readline())
+for i in range(N):
+	yi[i] = float(sources_points.readline())
+for i in range(N):
+	zi[i] = float(sources_points.readline()) 
+sources_points.close()
 
 # Sources
-xj = random_sample(Nj)  
-yj = random_sample(Nj)
-zj = random_sample(Nj)
-m = random_sample(Nj)
+#xj = random_sample(Nj)  
+#yj = random_sample(Nj)
+#zj = random_sample(Nj)
+#m = random_sample(Nj)
 # Targets
-xi = random_sample(N)   
-yi = random_sample(N)
-zi = random_sample(N)
+#xi = random_sample(N)   
+#yi = random_sample(N)
+#zi = random_sample(N)
+
 x0 = array([0.5,0.5,0.5,0.6]) # Position and radius of first cell
 
 print 'Sources: %i'%Nj
@@ -61,7 +89,7 @@ phi_zd = zeros(N)
 
 # Direct summation
 tic = time.time()
-#direct_c_cy(xi[0:sample_size],yi[0:sample_size],zi[0:sample_size],xj,yj,zj,phi_d[0:sample_size],phi_xd[0:sample_size],phi_yd[0:sample_size],phi_zd,m,kappa,eps)
+direct_c_cy(xi[0:sample_size],yi[0:sample_size],zi[0:sample_size],xj,yj,zj,phi_d[0:sample_size],phi_xd[0:sample_size],phi_yd[0:sample_size],phi_zd,m,kappa,eps)
 
 toc = time.time()
 time_direct = toc-tic
