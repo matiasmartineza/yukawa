@@ -31,8 +31,8 @@ BSZ = 256
 
 sample_size = 1000 # Sample for error calculation
 
-Nj  = 1000000  # Number of sources
-N   = 1000000  # Number of targets
+Nj  = 100000  # Number of sources
+N   = 100000  # Number of targets
 
 
 # Sources
@@ -61,7 +61,7 @@ phi_zd = zeros(N)
 
 # Direct summation
 tic = time.time()
-#direct_c_cy(xi[0:sample_size],yi[0:sample_size],zi[0:sample_size],xj,yj,zj,phi_d[0:sample_size],phi_xd[0:sample_size],phi_yd[0:sample_size],phi_zd,m,kappa,eps)
+direct_c_cy(xi[0:sample_size],yi[0:sample_size],zi[0:sample_size],xj,yj,zj,phi_d[0:sample_size],phi_xd[0:sample_size],phi_yd[0:sample_size],phi_zd,m,kappa,eps)
 
 toc = time.time()
 time_direct = toc-tic

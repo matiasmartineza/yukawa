@@ -1,0 +1,34 @@
+This is a Yukawa cartesian treecode, written in Python 
+with bindings to C++, and interfaces to CUDA with PyCUDA.
+
+Recursive relations for M2P were taken from:
+Li, Johnston, Krasny. A Cartesian treecode for screened
+coulomb interactions. JCP (2009).
+
+To compile the C++ code type 'make all'
+
+To run: type 'python treecode.py'
+
+Dependencies:
+    - Python
+    - Numpy
+    - PyCUDA
+    - SWIG
+
+if mode=='cpu' only CPU code is executed, 
+if mode=='pycuda' CUDA code is used for the M2P and P2P.
+
+Test case is a set of random particles in a 1x1x1 box.
+
+This treecode is the base from where PyGBe - a treecode 
+accelerated bondary element Poisson-Boltzmann solver - 
+was developed. For details, see https://bitbucket.org/cdcooper/pygbe.
+
+Code is a bit messy, but soon it will be cleaned
+
+Any questions/suggestions, please contact me at
+cdcooper@bu.edu
+
+Enjoy!
+
+Christopher
