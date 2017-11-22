@@ -1,7 +1,7 @@
 SWIG = swig
 SWIG_OPTS = -c++ -python
 CC = g++
-OPTS = -fPIC -funroll-loops -O3 -msse3 -fopenmp
+OPTS = -fPIC -funroll-loops -O3 -msse3
 
 all: swig1 swig2 swig3 link
 
