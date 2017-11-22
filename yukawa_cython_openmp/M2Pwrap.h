@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <sys/time.h>
+#include <omp.h>
 #define REAL double
 
 double get_time (void);

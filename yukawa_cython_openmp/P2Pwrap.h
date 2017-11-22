@@ -2,6 +2,7 @@
 #include <time.h>
 #include <math.h>
 #include <stdlib.h>
+#include <omp.h>
 #define REAL double
 
 void direct_c(REAL *xi, int xiSize, 
@@ -97,6 +98,7 @@ void P2P_c(REAL *xi, int xiSize,
         list_start = offTwg[tarTwg];
         list_end   = offTwg[tarTwg+1];
 
+	#pragma omp parallel for private(sum_p, sum_x, sum_y, sum_z, x, y, z, CJ, CJ_start, CJ_end, dx, dy, dz, r2, r, aux) shared(xi, yi, zi, list_start, list_end, interList, offSrc, xj, yj, zj, eps, ds, dsx, dsy, dsz)
         for (int i=CI_start; i<CI_end; i++)
         {
             sum_p = 0.;
