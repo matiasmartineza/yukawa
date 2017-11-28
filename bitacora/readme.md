@@ -32,3 +32,9 @@ Resultado extraño, preguntar a profesor.
 
 #### Siguientes pasos: 
 - Experimentar para un número fijo de threads, cambiando el número de partículas.
+
+## 24 / Noviembre / 2017
+
+#### Experimento:
+- Se corrió el árbol de yukawa para distinto número de partículas y threads.
+- Se corrió el árbol de yukawa para distintos tipos de scheduling, céteris páribus,  el tipo "guided" es el más eficiente.
